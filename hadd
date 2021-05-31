@@ -1,0 +1,46 @@
+#!/bin/bash
+
+DBPATH="~/CGDB/houdiniDB/"
+FILENAME="aggregateDB"
+DELIMITER="--DELIMITER--"
+
+function usage {
+        cat <<EOF
+$(basename ${0}) is a tool for....
+
+Usage:
+        $(basename ${0}) [command] [<options>]
+
+Options:
+        --help, -h      print this
+EOF
+}
+
+
+while getopts h: opts
+do
+  case $opts in
+    h) usage
+       exitLog ${JOB_WR} ;;
+  esac
+done;
+
+
+function hadd() {
+if [ $# -eq 0 ]; then
+	return 0 
+fi
+#存在確認
+if [ ! -d $DBPATH ]; then
+	mkdir $DBPATH
+fi
+if [ ! -e $DBPATH$FILENAME ];then
+	touch $DBPATH$FILENAME
+fi
+
+
+echo -e $DELIMITER >> $DBPATH$FILENAME
+echo -e $@ >> $DBPATH$FILENAME
+echo -e $DELIMITER >> $DBPATH$FILENAME
+echo "end"
+}
