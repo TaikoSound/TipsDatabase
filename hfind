@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+SEARCHPATH="~/CGDB/houdiniDB/"
+FILENAME="aggregateDB"
+DELIMITER="\-\-DELIMITER\-\-"
+
+function hfind() {
+	if [ $# -ne 1 ]; then
+		echo "invalid arg number, 1 arg required." 1>&2
+		return 1
+	fi
+
+	VAR=`cat $SEARCHPATH$FILENAME |  grep $1 -n -i | sed -e 's/:.*//g'`
+	targetRows=($VAR)
+
+for targetRow in "${targetRows[@]}"
+do
+  startRow=`head -n $targetRow $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | tail -n 1`
+	rowNum=`cat $SEARCHPATH$FILENAME | wc -l`
+	endRow=`tail -n $(($rowNum-$targetRow)) $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | head -n 1`
+	endRow=$(($endRow+$targetRow-1))
+	cat $SEARCHPATH$FILENAME | head -n $endRow | tail -n $(($endRow-$startRow))
+	#echo "------------------------"
+done
+}
