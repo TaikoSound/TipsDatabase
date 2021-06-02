@@ -1,9 +1,11 @@
 #!/usr/bin/bash
+
+
+function hfind() {
 SEARCHPATH="~/CGDB/houdiniDB/"
 FILENAME="aggregateDB"
 DELIMITER="\-\-DELIMITER\-\-"
 
-function hfind() {
 	if [ $# -ne 1 ]; then
 		echo "invalid arg number, 1 arg required." 1>&2
 		return 1
