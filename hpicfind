@@ -8,31 +8,18 @@ function hpicfind() {
 		echo "invalid arg number, 1 arg required." 1>&2
 		return 1
 	fi
-        #echo "s1"
-
 	VAR=`cat $SEARCHPATH$FILENAME |  grep $1 -n -i | sed -e 's/:.*//g'`
 	targetRows=($VAR)
-#	echo ${targetRows[@]}
 	for targetRow in "${targetRows[@]}"
 	do
-
-	#echo "s2"
-	echo $targetRow
-	startRow=`head -n $targetRow $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | tail -n 1`
-	#echo "s3"
-	rowNum=`cat $SEARCHPATH$FILENAME | wc -l`
-#	echo "s4"
-#	echo $startRow
-#	echo $rowNum
-	endRow=`tail -n $(($rowNum-$targetRow)) $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | head -n 1`
-	endRow=$(($endRow+$targetRow-1))
-	#xdg-open `echo $SEARCHPATH$FILENAME | head -n $endRow | tail -n $(($endRow-$startRow)) | head -n 1`
-	PicPath=`cat $SEARCHPATH$FILENAME | head -n $endRow | tail -n $(($endRow-$startRow)) | head -n 1`
-	xdg-open "$PicPath"
-	#echo "------------------------"
+		echo $targetRow
+		startRow=`head -n $targetRow $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | tail -n 1`
+		rowNum=`cat $SEARCHPATH$FILENAME | wc -l`
+		endRow=`tail -n $(($rowNum-$targetRow)) $SEARCHPATH$FILENAME | grep $DELIMITER -n | sed -e 's/:.*//g' | head -n 1`
+		endRow=$(($endRow+$targetRow-1))
+		PicPath=`cat $SEARCHPATH$FILENAME | head -n $endRow | tail -n $(($endRow-$startRow)) | head -n 1`
+		xdg-open "$PicPath"
 	done
-
-
 
 }
 
