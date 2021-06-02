@@ -1,12 +1,14 @@
 #!/usr/bin/evn bash
 
-sourcePicPath="~/Pictures/"
-destPicPath="~/CGDB/houdiniDB/"
-picDBDir="picDB"
-dbFileName="picDataDB"
-DELIMITER="--DELIMITER--"
+
 
 function hpicadd() {
+	sourcePicPath="~/Pictures/"
+	destPicPath="~/CGDB/houdiniDB/"
+	picDBDir="picDB"
+	dbFileName="picDataDB"
+	DELIMITER="--DELIMITER--"
+
 	if [ $# -eq 0 ]; then
 		return 1
 	fi
