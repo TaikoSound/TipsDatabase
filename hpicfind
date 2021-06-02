@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-SEARCHPATH="~/CGDB/houdiniDB/"
-FILENAME="picDataDB"
-DELIMITER="\-\-DELIMITER\-\-"
+
 
 function hpicfind() {
+	SEARCHPATH="~/CGDB/houdiniDB/"
+	FILENAME="picDataDB"
+	DELIMITER="\-\-DELIMITER\-\-"
+
 	if [ $# -ne 1 ]; then
 		echo "invalid arg number, 1 arg required." 1>&2
 		return 1
