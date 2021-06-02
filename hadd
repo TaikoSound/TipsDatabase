@@ -1,9 +1,5 @@
 #!/bin/bash
 
-DBPATH="~/CGDB/houdiniDB/"
-FILENAME="aggregateDB"
-DELIMITER="--DELIMITER--"
-
 function usage {
         cat <<EOF
 $(basename ${0}) is a tool for....
@@ -27,6 +23,9 @@ done;
 
 
 function hadd() {
+DBPATH="~/CGDB/houdiniDB/"
+FILENAME="aggregateDB"
+DELIMITER="--DELIMITER--"
 if [ $# -eq 0 ]; then
 	return 0 
 fi
