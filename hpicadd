@@ -1,7 +1,7 @@
 #!/usr/bin/evn bash
 
-sourcePicPath="/home/home/Pictures/"
-destPicPath="/home/home/CGDB/houdiniDB/"
+sourcePicPath="~/Pictures/"
+destPicPath="~/CGDB/houdiniDB/"
 picDBDir="picDB"
 dbFileName="picDataDB"
 DELIMITER="--DELIMITER--"
