@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-SEARCHPATH="/home/home/CGDB/houdiniDB/"
+SEARCHPATH="~/CGDB/houdiniDB/"
 FILENAME="picDataDB"
 DELIMITER="\-\-DELIMITER\-\-"
 
