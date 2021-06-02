@@ -1,0 +1,31 @@
+#!/usr/bin/evn bash
+
+sourcePicPath="/home/home/Pictures/"
+destPicPath="/home/home/CGDB/houdiniDB/"
+picDBDir="picDB"
+dbFileName="picDataDB"
+DELIMITER="--DELIMITER--"
+
+function hpicadd() {
+	if [ $# -eq 0 ]; then
+		return 1
+	fi
+#	echo "ss"
+	fileName=`ls -t $sourcePicPath | head -n 1`
+#echo "s0"
+	mv "$sourcePicPath$fileName" "$destPicPath$picDBDir"
+#echo "s1"
+	echo -e $DELIMITER >> $destPicPath$dbFileName
+#echo "s2"
+	echo "$destPicPath$picDBDir/$fileName" >> $destPicPath$dbFileName
+#echo "s3"
+	echo -e $@ >> $destPicPath$dbFileName
+#echo "s4"
+	echo -e $DELIMITER >> $destPicPath$dbFileName
+#echo "s5"
+	echo "success"
+
+#	xdg-open "$picDBPath$fileName"
+	
+
+}
